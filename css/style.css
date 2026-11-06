@@ -1,0 +1,4 @@
+:root { --bleu: #1f5f8b; --fond: #ddedf8; --texte: #1a1a1a; }
+body { font-family: system-ui, sans-serif; color: var(--texte); background: var(--fond); }
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 1rem; top: 1rem; }
