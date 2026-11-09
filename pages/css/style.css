@@ -1,0 +1,195 @@
+/* ===== Palette (surcharge des variables Bootstrap) ===== */
+:root{
+  --vert-fonce:#253D2C; --vert:#2E6F40; --vert-clair:#68BA79; --menthe:#CFFFDC;
+  --accent:#2E6F40; --accent-ink:#fff; --soft:#CFFFDC; --line:#BFE3C8; --hl:#68BA79;
+  --bs-body-bg:#F6FFF8; --bs-body-color:#253D2C; --bs-body-font-family:"Public Sans",system-ui,sans-serif;
+  --bs-link-color:#2E6F40; --bs-link-hover-color:#253D2C;
+  --bs-border-color:#BFE3C8; --bs-secondary-color:#4A6352;
+  --bs-success-bg-subtle:#CFFFDC; --bs-success-text-emphasis:#253D2C;
+}
+[data-bs-theme="dark"]{
+  --accent:#68BA79; --accent-ink:#12261A; --soft:#2A4A33; --line:#34543E;
+  --bs-body-bg:#1A2B20; --bs-body-color:#CFFFDC;
+  --bs-link-color:#68BA79; --bs-link-hover-color:#CFFFDC;
+  --bs-border-color:#34543E; --bs-secondary-color:#A9D7B5; --bs-tertiary-bg:#253D2C;
+  --bs-success-bg-subtle:#2A4A33; --bs-success-text-emphasis:#CFFFDC;
+}
+
+/* ===== Base ===== */
+html{scroll-behavior:smooth}
+section[id]{scroll-margin-top:72px}
+h1,h2,h3,.logo{font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif;font-weight:800;letter-spacing:-.01em}
+h1{letter-spacing:-.03em}
+.card{background:var(--bs-body-bg);--bs-card-bg:#fff;border-color:var(--line)}
+[data-bs-theme="dark"] .card{--bs-card-bg:#253D2C}
+:focus-visible{outline:3px solid var(--accent)!important;outline-offset:3px}
+
+/* Boutons aux couleurs du portfolio */
+.btn-primary{--bs-btn-bg:var(--accent);--bs-btn-border-color:var(--accent);--bs-btn-color:var(--accent-ink);
+  --bs-btn-hover-bg:var(--vert-fonce);--bs-btn-hover-border-color:var(--vert-fonce);--bs-btn-hover-color:#fff;
+  --bs-btn-active-bg:var(--vert-fonce);--bs-btn-active-border-color:var(--vert-fonce)}
+.btn-outline-primary{--bs-btn-color:var(--accent);--bs-btn-border-color:var(--accent);
+  --bs-btn-hover-bg:var(--accent);--bs-btn-hover-border-color:var(--accent);--bs-btn-hover-color:var(--accent-ink);
+  --bs-btn-active-bg:var(--accent);--bs-btn-active-color:var(--accent-ink)}
+
+/* Menu */
+.navbar{background:var(--bs-body-bg)!important}
+.navbar .nav-link{color:var(--bs-secondary-color);font-weight:500}
+.navbar .nav-link:hover,.navbar .nav-link.active{color:var(--accent);font-weight:600}
+.logo{font-size:1.2rem}
+
+/* Accueil */
+.hook{font-size:clamp(1.15rem,2.4vw,1.5rem);max-width:40ch}
+.status{display:flex;gap:.6rem;background:var(--soft);border-radius:12px;padding:.7rem 1rem;max-width:60ch;margin-bottom:1.5rem}
+.dot{flex:none;width:.6rem;height:.6rem;margin-top:.55rem;border-radius:50%;background:var(--accent)}
+.photo{width:200px;height:200px;border-radius:50%;background:var(--soft);border:2px dashed var(--accent);display:grid;place-items:center;text-align:center;padding:1rem;color:var(--bs-secondary-color);font-size:.9rem}
+
+ /* Photo de profil */
+.photo{position:relative;overflow:hidden;padding:0}
+.photo::before{content:"Ta photo ici";padding:1rem}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%}
+.photo img{object-position:50% 0%}
+/* Cartes « En bref » : le texte se déploie au survol / focus */
+.pilier{overflow:hidden;transition:transform .45s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
+.pilier:hover,.pilier:focus-within{transform:scale(1.03);box-shadow:0 16px 34px rgba(37,61,44,.22)}
+.pilier-logo{width:30px;height:30px;fill:none;stroke:var(--accent);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.pilier-image,.shot{background:var(--soft);display:grid;place-items:center;text-align:center;padding:1rem;color:var(--bs-secondary-color);font-size:.9rem;border-block:1px solid var(--line)}
+.pilier-image{aspect-ratio:1/1}
+.deploiement{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}
+.pilier:hover .deploiement,.pilier:focus-within .deploiement{grid-template-rows:1fr}
+.deploiement-in{overflow:hidden}
+.kw{background:linear-gradient(transparent 60%,var(--hl) 60%)}
+@media (hover:none){.deploiement{grid-template-rows:1fr}}
+
+/* Carrousel horizontal de projets */
+.projects{display:flex;gap:1.5rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:1.5rem .5rem 2rem;margin:0 -.5rem;scrollbar-width:thin}
+.project{flex:0 0 min(340px,82%);scroll-snap-align:start;overflow:hidden;transition:transform .45s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
+.project:hover,.project:focus-within{transform:scale(1.07);box-shadow:0 16px 34px rgba(37,61,44,.25);position:relative;z-index:2}
+.shot{min-height:180px;border-top:0}
+.car-btn{width:44px;height:44px;padding:0;font-size:1.3rem;line-height:1}
+
+/* Frise */
+.timeline{list-style:none;margin:0;padding:0 0 0 1.4rem;border-left:2px solid var(--accent)}
+.timeline li{position:relative;padding-bottom:1.4rem}
+.timeline li::before{content:"";position:absolute;left:calc(-1.4rem - 7px);top:.45rem;width:12px;height:12px;border-radius:50%;background:var(--bs-body-bg);border:3px solid var(--accent)}
+.timeline span{display:block;color:var(--bs-secondary-color);font-size:.95rem}
+
+/* CV */
+.cv-band{background:var(--soft);border-radius:12px;padding:2rem}
+
+/* Apparition au défilement */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* Retour en haut */
+#topBtn{position:fixed;right:1.2rem;bottom:1.2rem;width:46px;height:46px;padding:0;display:none;z-index:20}
+#topBtn.show{display:block}
+
+@media (max-width:767px){.photo{width:130px;height:130px;font-size:.75rem}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .pilier,.project,.deploiement,.reveal{transition:none}
+  .reveal{opacity:1;transform:none}
+  .pilier:hover,.pilier:focus-within,.project:hover,.project:focus-within{transform:none}
+}
+
+/* ===== Personnalisation supplémentaire ===== */
+/* Barre de progression de lecture */
+#progress{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--vert-clair),var(--accent));z-index:2000}
+/* Texte qui s’écrit */
+.typed{border-right:3px solid var(--accent);padding-right:2px;animation:blink .9s steps(1) infinite}
+@keyframes blink{50%{border-color:transparent}}
+/* Décor de l’accueil */
+#accueil{position:relative;overflow:hidden}
+#accueil::before{content:"";position:absolute;right:-120px;top:-140px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,var(--vert-clair) 0,transparent 70%);opacity:.35;z-index:-1}
+#accueil::after{content:"";position:absolute;left:-90px;bottom:-120px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,var(--menthe) 0,transparent 70%);opacity:.5;z-index:-1}
+[data-bs-theme="dark"] #accueil::after{background:radial-gradient(circle,#2E6F40 0,transparent 70%)}
+/* Filtre de projets */
+.project.is-hidden{display:none}
+/* Soulignement animé des liens du menu */
+.navbar .nav-link{position:relative}
+.navbar .nav-link::after{content:"";position:absolute;left:.5rem;right:.5rem;bottom:2px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.navbar .nav-link:hover::after,.navbar .nav-link.active::after{transform:scaleX(1)}
+@media (prefers-reduced-motion:reduce){.typed{animation:none}.navbar .nav-link::after{transition:none}}
+
+/* ===== Sections plus marquées ===== */
+.section-title{font-size:clamp(2rem,5vw,3rem);margin-bottom:2rem}
+.section-title::after{content:"";display:block;width:64px;height:5px;border-radius:3px;margin-top:.6rem;background:linear-gradient(90deg,var(--accent),var(--vert-clair))}
+.band{background:color-mix(in srgb,var(--soft) 45%,transparent)}
+
+/* Même effet que la carte « philosophie » (cartes sans texte déplié global) */
+.lift{overflow:hidden;transition:transform .45s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
+.lift:hover,.lift:focus-within{transform:scale(1.02);box-shadow:0 16px 34px rgba(37,61,44,.2)}
+.pilier .badge{font-weight:500;font-size:.85rem}
+
+/* Frise : chaque étape se déploie au survol */
+.tl-item{border-radius:8px;padding:.35rem .6rem;margin-left:-.6rem;transition:background .25s}
+.tl-item:hover,.tl-item:focus-within{background:var(--soft)}
+.tl-item:hover .deploiement,.tl-item:focus-within .deploiement{grid-template-rows:1fr}
+.tl-item:focus-visible{outline-offset:0}
+@media (prefers-reduced-motion:reduce){.lift,.tl-item{transition:none}.lift:hover,.lift:focus-within{transform:none}}
+
+/* ===== Style commun (cartes, icônes, frise) ===== */
+:root{--surface:#fff;--band:#EAFBEF}
+[data-bs-theme="dark"]{--surface:#253D2C;--band:#213628}
+.ico{width:28px;height:28px;flex:none;fill:none;stroke:var(--accent);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.band{background:var(--band)}
+.badge.tl-date{background:var(--soft);color:var(--bs-body-color);font-weight:600}
+
+/* Projets : même style que la carte « philosophie » */
+.projects{align-items:flex-start}
+.project.pilier:hover,.project.pilier:focus-within{transform:scale(1.04)}
+.pilier-image.wide{aspect-ratio:16/10}
+@media (hover:hover){.projects{min-height:30px}}
+
+/* À propos */
+.about-card{background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--accent);border-radius:14px;padding:1.5rem}
+.about-lead{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.45rem;line-height:1.25}
+.stat{background:var(--soft);border-radius:10px;padding:.8rem .3rem}
+.stat b{display:block;font-family:"Bricolage Grotesque",sans-serif;font-size:1.3rem;color:var(--accent)}
+.stat span{font-size:.8rem;color:var(--bs-secondary-color)}
+
+/* Frise (parcours, expériences, formations) */
+.tl{list-style:none;margin:0;padding:0 0 0 28px;position:relative}
+.tl::before{content:"";position:absolute;left:21px;top:10px;bottom:10px;width:2px;background:var(--line)}
+.tl li{position:relative;padding-left:34px;margin-bottom:1.1rem}
+.tl-dot{position:absolute;left:-28px;top:6px;width:44px;height:44px;border-radius:50%;background:var(--surface);border:2px solid var(--accent);display:grid;place-items:center}
+.tl-dot .ico{width:22px;height:22px}
+.tl-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem;transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
+.tl-card:hover{transform:translateX(6px);box-shadow:0 10px 24px rgba(37,61,44,.18)}
+.tl-card.current{border-color:var(--accent);box-shadow:0 0 0 2px var(--soft)}
+.tl-card h3{margin:.5rem 0 .2rem}
+.tl-card p{margin:0;color:var(--bs-secondary-color)}
+.p-exper{text-align: justify; padding: .15rem .8rem .15rem .8rem;}
+.b-exper{color: #206137;}
+/* Compétences */
+.skill-card{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--hl);border-radius:14px;padding:1.3rem;transition:transform .45s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
+.skill-card:hover{transform:translateY(-6px);box-shadow:0 16px 34px rgba(37,61,44,.2)}
+.skill-head{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem}
+.chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem}
+.chip{display:inline-flex;align-items:center;gap:.5rem;background:#e1f1e5;border-radius:999px;padding:.15rem .8rem .15rem .8rem;font-size:.92rem;cursor:default;transition:transform .25s cubic-bezier(.34,1.56,.64,1),background .2s,color .2s}
+.mono{display:grid;place-items:center;min-width:28px;height:28px;padding:0 .3rem;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-size:.68rem;font-weight:700}
+.chip:hover{transform:translateY(-3px) scale(1.06);background:var(--accent);color:var(--accent-ink)}
+.chip:hover .mono{background:var(--accent-ink);color:var(--accent)}
+
+/* Certifications */
+.cert-card{overflow:hidden;transition:transform .45s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
+.cert-card:hover{transform:scale(1.04);box-shadow:0 16px 34px rgba(37,61,44,.22)}
+.certif-img{position:relative;aspect-ratio:4/3;display:grid;place-items:center;background:var(--soft);border-bottom:1px solid var(--line);color:var(--bs-secondary-color);font-size:.9rem}
+.certif-img::before{content:"Image de la certification"}
+.certif-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:var(--surface);padding:.6rem}
+
+@media (prefers-reduced-motion:reduce){.tl-card,.skill-card,.chip,.cert-card{transition:none}.tl-card:hover,.skill-card:hover,.chip:hover,.cert-card:hover{transform:none}}
+
+/* ===== Image informatique en fond de l’en-tête ===== */
+#accueil.hero-bg{
+  background:linear-gradient(rgba(27,50,35,.55),rgba(27,50,35,.35)),url("../img/header-informatique.svg") center/cover no-repeat;
+  color:#CFFFDC;padding-top:6rem!important;padding-bottom:6rem!important}
+#accueil.hero-bg::before,#accueil.hero-bg::after{display:none}
+#accueil.hero-bg h1{color:#fff}
+#accueil.hero-bg .status{background:rgba(207,255,220,.16);color:#CFFFDC;backdrop-filter:blur(4px)}
+#accueil.hero-bg .dot{background:var(--vert-clair)}
+#accueil.hero-bg .typed{border-right-color:var(--vert-clair)}
+#accueil.hero-bg .photo{background:rgba(207,255,220,.12);border-color:var(--vert-clair);color:#CFFFDC}
+#accueil.hero-bg .btn-primary{--bs-btn-bg:#68BA79;--bs-btn-border-color:#68BA79;--bs-btn-color:#12261A;--bs-btn-hover-bg:#CFFFDC;--bs-btn-hover-border-color:#CFFFDC;--bs-btn-hover-color:#12261A}
+#accueil.hero-bg .btn-outline-primary{--bs-btn-color:#CFFFDC;--bs-btn-border-color:#CFFFDC;--bs-btn-hover-bg:#CFFFDC;--bs-btn-hover-border-color:#CFFFDC;--bs-btn-hover-color:#12261A}
