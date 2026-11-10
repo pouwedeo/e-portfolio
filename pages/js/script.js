@@ -58,20 +58,57 @@
 })();
 
 // ===== 5. Formulaire : validation Bootstrap puis ouverture du mail =====
+// ===== Formulaire : envoi réel via Web3Forms =====
 (function () {
   var form = document.getElementById("contactForm");
+  var status = document.getElementById("formStatus");
+  var btn = form.querySelector("button[type=submit]");
+
+  function show(type, text) {
+    status.innerHTML = '<div class="alert alert-' + type + ' mt-3 mb-0">' + text + "</div>";
+  }
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     form.classList.add("was-validated");
     if (!form.checkValidity()) return;
-    var nom = document.getElementById("nom").value;
-    var email = document.getElementById("email").value;
-    var msg = document.getElementById("msg").value;
-    var sujet = encodeURIComponent("Contact depuis ton portfolio");
-    var corps = encodeURIComponent(msg + "\n\n" + nom + " (" + email + ")");
-    window.location.href = "mailto:prenom.nom@exemple.fr?subject=" + sujet + "&body=" + corps;
+    if (document.getElementById("botcheck").checked) return; // robot détecté
+
+    btn.disabled = true;
+    btn.textContent = "Envoi en cours…";
+
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        access_key: document.getElementById("access_key").value,
+        subject: "Nouveau message depuis ton portfolio",
+        from_name: document.getElementById("nom").value,
+        name: document.getElementById("nom").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("msg").value
+      })
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data.success) {
+          show("success", "Merci, ton message a bien été envoyé.");
+          form.reset();
+          form.classList.remove("was-validated");
+        } else {
+          show("danger", "L’envoi a échoué. Écris-moi directement par e-mail.");
+        }
+      })
+      .catch(function () {
+        show("danger", "Problème de connexion. Réessaie dans un instant.");
+      })
+      .finally(function () {
+        btn.disabled = false;
+        btn.textContent = "Envoyer le message";
+      });
   });
 })();
+
 
 // ===== 6. Barre de progression de lecture =====
 (function () {

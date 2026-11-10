@@ -511,7 +511,9 @@
             </ul>
           </div>
           <div class="col-md-7">
-            <form id="contactForm" class="needs-validation" novalidate>
+     <form id="contactForm" class="needs-validation" novalidate>
+              <input type="hidden" id="access_key" value="1a1ce96c-a29a-4d76-9ebd-6a2bcd61cc66">
+              <input type="checkbox" id="botcheck" class="d-none" tabindex="-1" autocomplete="off">
               <div class="mb-3"><label class="form-label" for="nom">Nom</label><input class="form-control" id="nom"
                   required autocomplete="name">
                 <div class="invalid-feedback">Indique ton nom.</div>
@@ -525,6 +527,7 @@
                 <div class="invalid-feedback">Écris ton message.</div>
               </div>
               <button class="btn btn-primary" type="submit">Envoyer le message</button>
+              <div id="formStatus" role="status" aria-live="polite"></div>
             </form>
           </div>
         </div>
